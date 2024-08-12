@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkers Game</title>
+    <link rel="stylesheet" href="checkerstyle.css">
+</head>
+<body>
+    <!-- Start Screen -->
+    <div id="start-screen">
+      <h1>Welcome to Checkers</h1>
+      <!-- Add the image here -->
+      <img src="Checkers-logo.jpg" alt="Checkers Logo" style="width: 300px; height: auto; margin-top: 20px;">
+      
+      <!-- Initial Game Mode Selection -->
+      <div id="initial-mode-selection" class="game-mode-selection">
+          <h2>Select Game Mode</h2>
+          <button id="mode-pvp">Player vs. Player</button>
+          <button id="mode-ai">Player vs. AI</button>
+          <button id="mode-timed">Timed Mode</button>
+      </div>
+
+      <!-- Timed Mode Selection -->
+      <div id="timed-mode-selection" class="timed-mode-selection" style="display: none;">
+          <h2>Select Time Limit (Seconds)</h2>
+          <button class="time-limit-btn" data-time="30">30 Seconds</button>
+          <button class="time-limit-btn" data-time="60">60 Seconds</button>
+          <button class="time-limit-btn" data-time="120">120 Seconds</button>
+
+          <div class="opponent-selection" style="margin-top: 20px;">
+              <h3>Select Opponent</h3>
+              <button id="timed-pvp">Player vs. Player</button>
+              <button id="timed-ai">Player vs. AI</button>
+          </div>
+      </div>
+
+      <!-- AI Difficulty Selection -->
+      <div id="ai-difficulty-selection" class="ai-difficulty-selection" style="display: none;">
+          <h2>Select AI Difficulty</h2>
+          <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+          <button class="difficulty-btn" data-difficulty="medium">Medium</button>
+          <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+          <button class="difficulty-btn" data-difficulty="extreme">Extreme</button>
+      </div>
+  </div>
+  <!-- Winner Container -->
+    <div id="winner-container" style="display: none;">
+        <img id="winner-image" src="winner.avif" alt="Winner">
+        <div id="winner-message">Congratulations! You Win!</div>
+        <button id="restart-button">Restart Game</button>
+        <button id="back-to-start-button">Back to Start</button>
+        <canvas id="confetti-canvas"></canvas>
+    </div>
+    <!-- Loser Container -->
+    <div id="loser-container" style="display: none;">
+        <img id="loser-image" src="loser.jpg" alt="Loser">
+        <div id="loser-message">You Lose!</div>
+        <button id="loser-restart-button">Restart Game</button>
+        <button id="back-to-start-button-loser">Back to Start</button>
+    </div>
+    
+    <!-- Game Container -->
+    <div class="game-container" style="display: none;">
+      <div class="player-info">
+          <div id="player-turn">Player 1's Turn</div>
+          <button id="restart-button">Restart</button>
+          <button id="menu-button">Menu</button>
+      </div>
+    
+      <div class="board-container">
+        <table id="checkers-board">
+            <!-- Top Labels -->
+            <tr>
+                <td class="corner"></td>
+                <td class="label">A</td>
+                <td class="label">B</td>
+                <td class="label">C</td>
+                <td class="label">D</td>
+                <td class="label">E</td>
+                <td class="label">F</td>
+                <td class="label">G</td>
+                <td class="label">H</td>
+                <td class="corner"></td>
+            </tr>
+            <!-- Checkerboard Rows with Side Labels -->
+            <tr>
+                <td class="label">1</td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="label">1</td>
+            </tr>
+            <tr>
+                <td class="label">2</td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="label">2</td>
+            </tr>
+            <tr>
+                <td class="label">3</td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="label">3</td>
+            </tr>
+            <tr>
+                <td class="label">4</td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="label">4</td>
+            </tr>
+            <tr>
+                <td class="label">5</td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="label">5</td>
+            </tr>
+            <tr>
+                <td class="label">6</td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="label">6</td>
+            </tr>
+            <tr>
+                <td class="label">7</td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="label">7</td>
+            </tr>
+            <tr>
+                <td class="label">8</td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="light-square"></td>
+                <td class="dark-square"></td>
+                <td class="label">8</td>
+            </tr>
+            <!-- Bottom Labels -->
+            <tr>
+                <td class="corner"></td>
+                <td class="label">A</td>
+                <td class="label">B</td>
+                <td class="label">C</td>
+                <td class="label">D</td>
+                <td class="label">E</td>
+                <td class="label">F</td>
+                <td class="label">G</td>
+                <td class="label">H</td>
+                <td class="corner"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<script src="checkerscript.js"></script>
+</body>
+</html>

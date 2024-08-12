@@ -1,0 +1,280 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1, h2 {
+  color: #333;
+  text-align: center;
+}
+
+#start-screen {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-mode-selection, .ai-difficulty-selection, .timed-mode-selection {
+  margin-top: 20px;
+}
+
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007BFF;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Selected Button Styles */
+.selected {
+  background-color: #0056b3;
+  color: white;
+  border: 2px solid #003d80;
+}
+
+/* Start Button Styles */
+#start-button {
+  background-color: #28a745;
+  color: white;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+
+#start-button:hover {
+  background-color: #218838;
+}
+
+#start-button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+#ai-difficulty-selection, #timed-mode-selection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#timed-mode-selection button, 
+#ai-difficulty-selection button {
+  margin: 5px;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#checkers-board {
+  border-collapse: collapse;
+  margin: 20px auto;
+  border: 10px solid #333;
+}
+
+#checkers-board td {
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 20px;
+  position: relative;
+}
+
+.dark-square {
+  background-color: #8b4513;
+}
+
+.light-square {
+  background-color: #f5deb3;
+}
+
+.piece {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-size: contain;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.piece-red {
+  background-color: red;
+}
+
+.piece-black {
+  background-color: black;
+}
+
+.king::after {
+  content: "👑";
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  color: gold;
+  pointer-events: none;
+}
+
+.player-info {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+#player-turn {
+  font-size: 18px;
+  font-weight: bold;
+  color: #007BFF;
+}
+
+#restart-button {
+  background-color: #DC3545;
+}
+
+#restart-button:hover {
+  background-color: #c82333;
+}
+
+.highlight {
+  background-color: #fffb20 !important;
+}
+
+#menu-button {
+  background-color: #28a745;
+}
+
+#menu-button:hover {
+  background-color: #218838;
+}
+
+/* Label Styles */
+.label {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #f5deb3;
+}
+
+.corner {
+  width: 20px;
+  height: 20px;
+  background-color: #333;
+}
+.ai-move-highlight {
+  border: 4px solid #fffb20; 
+}
+#winner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+#winner-message {
+  font-size: 36px;
+  margin-top: 20px;
+}
+
+#winner-image {
+  max-width: 80%;
+  max-height: 300px;
+}
+
+#winner-container button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#confetti-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1001;
+}
+#loser-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+#loser-message {
+  font-size: 36px;
+  margin-top: 20px;
+}
+
+#loser-image {
+  max-width: 80%;
+  max-height: 300px;
+}
+
+#loser-container button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
